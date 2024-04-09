@@ -1,35 +1,66 @@
-import requests
+import requests  # # library for API requests needed for GET, POST, DELETE, ETC
 import configparser
 from payLoad import *
 from utilities.configurations import *
 from utilities.resources import *
 
+# requests.<typeOfRequest> is the method to send a request - GET, POST, DELETE
 
-# requests.<typeOfRequest> is the method to send a request
-# requires url, body, header
-addBookUrl = getConfig()['API']['endpoint']+ApiResources.addBook
-header = {"Content-Type":"application/json"}
-addBook_response = requests.post(addBookUrl, json=addBookPayload('genius'), headers=header,)
 
-# view then store the response as json a variable
+# POST /addBookUrl.php
+# to add, use the addbook api and pass body and header
+# storing addBookUrl from `configurations.py` class, `properties.ini` and `resources.py`
+addBookUrl = getConfig()['API']['endpoint'] + ApiResources.addBook
+
+# creating variable of header
+header = {"Content-Type": "application/json"}
+
+# storing response to POST /addBook
+addBook_response = requests.post(
+    addBookUrl,
+    json=addBookPayload('genius'),  # references payload class
+    headers=header, )
+
+# print then store the response as json a variable
 print(addBook_response.json())
-response_json = addBook_response.json()
+addResponse_json = addBook_response.json()
+
+# Validate the response
+assert addResponse_json['Msg'] == "successfully added"
 
 # access to response is like accessing dictionary - key value pairs
-# accessing bookID in this example is by passing the key 'ID' and storing it for future use
-bookId = response_json['ID']
+# storing bookId for e2e validation
+bookId = addResponse_json['ID']
 
-# to delete, use the delete api and pass the stored variable 'bookId'
-deleteBookUrl = getConfig()['API']['endpoint']+ApiResources.deleteBook
-deleteBook_response = requests.post(deleteBookUrl, json={"ID": bookId}, headers=header,)
 
-# view then store the response
+
+# DELETE /DeleteBook.php
+# to delete, referencing `configuration.py`, `properties.ini` and `resources.py`
+deleteBookUrl = getConfig()['API']['endpoint'] + ApiResources.deleteBook
+# use the delete api and pass the stored variable 'bookId'
+deleteBook_response = requests.post(
+    deleteBookUrl,
+    json={"ID": bookId},  # using the stored bookID from addBookUrl
+    headers=header, )
+
+# print then store the response
 print(deleteBook_response.json())
-res_json = deleteBook_response.json()
+deleteResponse_json = deleteBook_response.json()
 
-# validate the response
-assert res_json['msg'] == "book is successfully deleted"
+# Validate the response
+assert deleteResponse_json['msg'] == "book is successfully deleted"
 
-authUrl = 'https://api.github.com/user'
-github_response = requests.get(authUrl, auth=('alansoliz@gmail.com', getPassword()))
-print(github_response.json())
+
+# GET /GetBook.php
+# to get, referencing `configuration.py`, `properties.ini` and `resources.py`
+getBookUrl = getConfig()['API']['endpoint'] + ApiResources.getBook
+# use the getBook api and pass bookId as part of `ID` params
+getBook_response = requests.get(getBookUrl,
+                                params={'ID': bookId})
+# print then store the response
+print(getBook_response.json())
+getResponse_json = getBook_response.json()
+
+# Validate the response that deleted book cannot be found
+assert getResponse_json['msg'] == "The book by requested bookid / author name does not exists!"
+

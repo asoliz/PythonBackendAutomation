@@ -1,3 +1,4 @@
+# library for API requests needed for GET, POST, DELETE, ETC
 import requests
 
 # cookie = {'visit-month': 'February'}

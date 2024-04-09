@@ -10,11 +10,11 @@
       "copies": 6,
       "details":
       {
-        "site": "http://alansolizacamdey.com"
+        "site": "http://alansolizacademy.com"
       }
     },
     {
-      "title": "RPA",
+      "title": "Cypress",
       "price": 40,
       "copies": 4
     },
@@ -24,7 +24,7 @@
       "copies": 10
     },
     {
-      "title": "Cypress",
+      "title": "RPA",
       "price": 45,
       "copies": 10
     }

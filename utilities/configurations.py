@@ -8,4 +8,4 @@ def getConfig():
 
 
 def getPassword():
-    return 'jwoifjowej'
+    return 'wibcoj-5kihxo-fefcUz'
