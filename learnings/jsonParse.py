@@ -26,7 +26,7 @@ print("Index 1 of list_language is:", list_language[1])
 print(dict_courses['language'][1])
 
 # Requirement - parse from json file and find price of a course
-with open('/Users/asoliz/projects/PythonBackendAutomation/files/courses') as f:
+with open('/files/courses') as f:
     # load() converts file object to dictionary
     data = json.load(f)
     # this will loop through the list of 'courses'
@@ -38,14 +38,14 @@ with open('/Users/asoliz/projects/PythonBackendAutomation/files/courses') as f:
             break
 
 # Requirement - compare two jsons
-with open('/Users/asoliz/projects/PythonBackendAutomation/files/course1.json') as fi:
+with open('/files/course1.json') as fi:
     # load() converts file object to dictionary
     data2 = json.load(fi)
     # assert if both files are equal which they are not and will error
     assert data == data2
 
 # Requirement - parse from json file and extract website for Selenum Python
-with open('/Users/asoliz/projects/PythonBackendAutomation/files/courses') as f:
+with open('/files/courses') as f:
     # load() converts file object to dictionary
     data = json.load(f)
     # this will loop through the list of 'courses'
