@@ -16,7 +16,6 @@ addBookUrl = getConfig()['API']['endpoint'] + ApiResources.addBook
 
 # storing response to POST /addBook
 addBook_response = requests.post(addBookUrl, json=buildBookPayloadFromCSV(), headers=header, )
-#addBook_response = requests.post(addBookUrl, json=buildBookPayloadFromCSV(), headers=header)  # references payload file with payload being built
 
 # print status response and verify
 print(addBook_response)

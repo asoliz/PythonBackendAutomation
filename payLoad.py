@@ -1,11 +1,11 @@
 import utilities.configurations
 
 
-def addBookPayload(isbn):
+def addBookPayload(isbn, aisle):
     body = {
         "name": "This is how we do it",
         "isbn": isbn,
-        "aisle": "510",
+        "aisle": aisle,
         "author": "montell jordan"
     }
     return body
