@@ -11,7 +11,6 @@ def addBookPayload(isbn, aisle):
     return body
 
 
-
 def buildBookPayloadFromCSV():
     addBody = {}
     pl = utilities.configurations.getCsv('files/books.csv')
@@ -20,7 +19,3 @@ def buildBookPayloadFromCSV():
     addBody['aisle'] = str(pl.get('aisle')[0])
     addBody['author'] = pl.get('author')[0]
     return addBody
-
-# print(type(buildBookPayloadFromCSV()))
-# print(type(addBookPayload("oij")))
-# print(buildBookPayloadFromCSV())
